@@ -8,6 +8,7 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+	int res;
 	//UDT 服务器的句柄
 	UDTSOCKET serv;
 	//UDT 客户端句柄
@@ -19,7 +20,8 @@ int main(int argc, char* argv[])
 	//客户端信息
 	sockaddr_storage client_addr;
 	int addrlen = sizeof(client_addr);
-	char data[100] = {0};
+	char data_send[100] = "HelloWord666";
+	char data_recv[100] = { 0 };
 
 	//初始化 UDT 库
 	UDT::startup();
@@ -54,16 +56,24 @@ int main(int argc, char* argv[])
 		cout << "accept: " << UDT::getlasterror().getErrorMessage() << endl;
 		return 0;
 	}
-	if (UDT::ERROR == UDT::recv(client, data, 100, 0))
+	cout << "new client " << client << endl;
+	res = UDT::recv(client, data_recv, 100, 0);
+	if (UDT::ERROR == res)
 	{
 		cout << "recv:" << UDT::getlasterror().getErrorMessage() << endl;
 		return 0;
 	}
-	cout << "recv:" << data << endl;
+	cout << "recv:" << data_recv << endl;
+	res = UDT::send(client, data_send, strlen(data_send), 0);
+	if (UDT::ERROR == res)
+	{
+		cout << "send:" << UDT::getlasterror().getErrorMessage() << endl;
+		return 1;
+	}
 
 	//休眠 5 秒。
 	Sleep(5000);
-
+	cout << "server exit" << endl;
 	UDT::close(client);
 	UDT::close(serv);
 	//释放 UDT 库
