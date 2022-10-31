@@ -26,5 +26,6 @@
 .\#*
 /.config
 /.idea/*
+/.vs/*
 /.version
 *.vcxproj.user
