@@ -32,9 +32,9 @@ int main(int argc, char* argv[])
 	hints.ai_family = AF_INET;
 	hints.ai_socktype = SOCK_STREAM;
 	//hints.ai_socktype = SOCK_DGRAM;
-	if (0 != getaddrinfo(NULL, server_port, &hints, &local_info))
+	if (0 != getaddrinfo(NULL, "", &hints, &local_info))
 	{
-		cout << "incorrect network address 666.\n" << endl;
+		cout << "incorrect network address.\n" << endl;
 		return 1;
 	}
 	client = UDT::socket(local_info->ai_family, local_info->ai_socktype, local_info->ai_protocol);
@@ -52,6 +52,7 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 	freeaddrinfo(server_info);
+	cout << "connect server " << server_ip << " success" << endl;
 
 	res = UDT::send(client, data_send, strlen(data_send), 0);
 	if (UDT::ERROR == res)
@@ -59,6 +60,7 @@ int main(int argc, char* argv[])
 		cout << "send:" << UDT::getlasterror().getErrorMessage() << endl;
 		return 1;
 	}
+	cout << "send data success" << endl;
 	//休眠 1 秒再读取数据
 	Sleep(1000);
 	res = UDT::recv(client, data_recv, 100, 0);
