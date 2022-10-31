@@ -15,7 +15,7 @@ int main(int argc, char* argv[])
 	addrinfo hints;
 	addrinfo* info;
 	//监听的 udp 端口
-	char port[] = "9000";
+	char port[] = "9876";
 	//客户端信息
 	sockaddr_storage client_addr;
 	int addrlen = sizeof(client_addr);
@@ -62,6 +62,7 @@ int main(int argc, char* argv[])
 	cout << "recv:" << data << endl;
 
 	//休眠 5 秒。
+	Sleep(5000);
 
 	UDT::close(client);
 	UDT::close(serv);
