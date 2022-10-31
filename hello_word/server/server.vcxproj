@@ -96,6 +96,11 @@
       <AdditionalLibraryDirectories>$(SolutionDir)/udt/</AdditionalLibraryDirectories>
       <AdditionalDependencies>udt.lib;ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy $(SolutionDir)\udt\udt.dll $(OutDir)
+copy $(SolutionDir)\udt\udt.pdb $(OutDir)
+copy $(SolutionDir)\udt\udt.exp $(OutDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
