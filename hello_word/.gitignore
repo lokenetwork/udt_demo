@@ -25,6 +25,7 @@
 \#*
 .\#*
 /.config
+*/Debug/*
 /.idea/*
 /.vs/*
 /.version
