@@ -28,5 +28,6 @@
 */Debug/*
 /.idea/*
 /.vs/*
+*/.vs/*
 /.version
 *.vcxproj.user
