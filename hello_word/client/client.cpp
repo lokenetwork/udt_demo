@@ -31,7 +31,6 @@ int main(int argc, char* argv[])
 	hints.ai_flags = AI_PASSIVE;
 	hints.ai_family = AF_INET;
 	hints.ai_socktype = SOCK_STREAM;
-	//hints.ai_socktype = SOCK_DGRAM;
 	if (0 != getaddrinfo(NULL, "", &hints, &local_info))
 	{
 		cout << "incorrect network address.\n" << endl;

@@ -30,7 +30,6 @@ int main(int argc, char* argv[])
 	hints.ai_flags = AI_PASSIVE;
 	hints.ai_family = AF_INET;
 	hints.ai_socktype = SOCK_STREAM;
-	//hints.ai_socktype = SOCK_DGRAM;
 	if (0 != getaddrinfo(NULL, port, &hints, &info))
 	{
 		cout << "illegal port number or port is busy.\n" << endl;
